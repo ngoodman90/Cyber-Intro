@@ -1,18 +1,24 @@
 import socket
+import time
 
 import sys
 
-#initializing socket
-my_socket = socket.socket()
 
-#connecting to remote server
-my_socket.connect(('127.0.0.1', 1729))
 
-for i in range(100):
+while True:
+
+    # initializing socket
+    my_socket = socket.socket()
+
+    #connecting to remote server
+    my_socket.connect(('127.0.0.1', 1729))
+
+
+
     #receiving data from user
     input_data = raw_input('Enter TIME, NAME or RAND:')
 
-    if len(input_data) != 4:
+    if (input_data != 'NAME' and input_data != 'TIME' and input_data != 'RAND'):
         print 'Error! Illegal input, try again'
         continue
     else:
@@ -27,6 +33,6 @@ for i in range(100):
     else:
         print 'No response from server'
 
-
-#closing socket
-my_socket.close()
+    time.sleep(2)
+    #closing socket
+    my_socket.close()
